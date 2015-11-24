@@ -3,8 +3,8 @@
 var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 39.094681, lng: -94.582033},
-        zoom: 12
+        center: {lat: 39.076268, lng: -94.590043},
+        zoom: 13
     });
 
     function point(name, lat, long) {
@@ -22,9 +22,11 @@ function initMap() {
 
     var viewModel = {
         points: ko.observableArray([
-            new point('Test1', 39.132073, -94.505719),
-            new point('Test2', 39.174671, -94.577130),
-            new point('Test3', 39.079857, -94.570263)
+            new point('801 Chop House', 39.096980, -94.582418),
+            new point('Grinders', 39.091405, -94.578115),
+            new point('Jack Stack Barbecue', 39.087237, -94.585817),
+            new point('Beer Kitchen', 39.052808, -94.591287),
+            new point('Reserve', 39.100631, -94.580513)
         ])
     };
 
