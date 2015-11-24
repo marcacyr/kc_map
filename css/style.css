@@ -3,6 +3,24 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+h3 {
+	text-align: center;
+	color: gray;
+}
+.btn {
+	background-color: #2f75d6;
+	color: white;
+	border-color: #2f75d6;
+}
 #map {
 	height: 100%;
+}
+#sidebar {
+	height: 100%;
+	width: 230px;
+	background-color: black;
+	float: left;
+}
+.searchbar {
+	margin-top: 10px;
 }
