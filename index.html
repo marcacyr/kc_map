@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Map</title>
+    <meta charset="utf-8">
+    <title>KC Spots</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/knockout/dist/knockout.js"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARFRMphtDllgm1XUFjiuqvsKkYPR5xu_w&callback=initMap"></script>
+    <script src="js/main.js" type="text/javascript"></script>
   </head>
   <body>
+
     <div id="sidebar">
       <div class="title">
         <h3>KC Spots</h3>
       </div>
       <div class="searchbar">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
+          <input class="form-control" placeholder="Search for…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button">Filter</button>
           </span>
-          </div><!-- /input-group -->
-        </div><!-- /searchbar -->
-      </div><!-- /.row -->
-      <script id="pointsTmpl" type="text/html">
-        <p>
-          Name: <span data-bind="text: name"></span>; 
-        </p>
-      </script>
+        </div>
+      </div>
+      <ul data-bind="template: {name:'place', foreach:places}"></ul>
     </div>
+
     <div id="map"></div>
+
     <div id="points" data-bind="template: { name: 'pointsTmpl', foreach: points }"></div>
-    <script src="js/main.js" type="text/javascript"></script>
+
+    <script data-proofer-ignore type="text/html" id="place">
+      <br>
+      <li>
+        <strong data-bind="text: name"></strong>
+      </li>
+    </script>
+
   </body>
 </html>
