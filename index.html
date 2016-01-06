@@ -21,9 +21,11 @@
     <div id="map"></div>
     <script type="text/html" id="place">
       <div data-bind="visible: visible"><br>
-        <li data-bind="attr: {id: id}">
-          <p data-bind="text: name"></p>
-        </li>
+        <a href="#" data-bind="attr: {id: id}">
+          <li>
+            <strong data-bind="text: name"></strong>
+          </li>
+        </a>
       </div>
     </script>
     <script src="bower_components/jquery/dist/jquery.js"></script>

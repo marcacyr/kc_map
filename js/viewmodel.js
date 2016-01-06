@@ -23,14 +23,33 @@ function initMarkers(places) {
 
     var infowindow = new google.maps.InfoWindow();
 
-    google.maps.event.addListener(places[i].holdMarker, 'click', (function(marker, i) {
+    //if marker is clicked, display its info window
+    google.maps.event.addListener(places[i].holdMarker, 'click', (function(place, i) {
       return function () {
+        animateMarker(place, i);
         infowindow.setContent(places[i].name);
         infowindow.open(map,this);
       };
     })(places[i].holdMarker, i));
 
+    //if nav tool is clicked, display info window above marker
+    var searchNav = $('#spot' + i);
+    searchNav.click((function(place, i) {
+      return function() {
+        animateMarker(place, i);
+        infowindow.setContent(places[i].name);
+        infowindow.open(map,place);
+      };
+    })(places[i].holdMarker, i));
+
   };
+}
+
+function animateMarker(place, i) {
+  place.setAnimation(google.maps.Animation.BOUNCE);
+  setTimeout(function() {
+    place.setAnimation(null);
+  }, 1500);
 }
 
 //update the visibility of each marker based on search query
