@@ -20,6 +20,16 @@ function initMarkers(places) {
       title: places[i].name,
       map: map
     });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    google.maps.event.addListener(places[i].holdMarker, 'click', (function(marker, i) {
+      return function () {
+        infowindow.setContent(places[i].name);
+        infowindow.open(map,this);
+      };
+    })(places[i].holdMarker, i));
+
   };
 }
 
