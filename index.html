@@ -3,14 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>KC Spots</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div id="sidebar">
+    <header>    
+      <div id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <div class="title">
         <h3>KC Spots</h3>
       </div>
+    </header>
+    <div id="sidebar">
       <div class="searchbar">
         <div class="input-group">
           <input id="input" class="form-control" placeholder="Search for…" type="search" name="q" data-bind="textInput: query, valueUpdate: 'keydown'" autocomplete="off">

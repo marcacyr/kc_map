@@ -7,7 +7,11 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 39.076268, lng: -94.590043},
-      zoom: 13
+      zoom: 13,
+      mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.BOTTOM_CENTER
+      }
   });
   initMarkers(places);
 }
@@ -92,4 +96,13 @@ ko.applyBindings(viewModel);
 //bind a keyup function to the search bar that invokes the function updateMarkers
 $("#input").keyup(function() {
   updateMarkers();
+});
+
+//toggle the visibility of side bar when clicking hamburger icon
+$("#hamburger").click(function () {
+    if ( $('#sidebar').css('z-index') == 0) {
+        $('#sidebar').css('z-index', 10);
+    } else {
+        $('#sidebar').css('z-index', 0);
+    };
 });
