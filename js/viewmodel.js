@@ -19,32 +19,49 @@ function initMap() {
 //create markers for each place in the model
 function initMarkers(places) {
   for (var i = 0; i < places.length; i++) {
-    places[i].holdMarker = new google.maps.Marker({
-      position: new google.maps.LatLng(places[i].lat, places[i].long),
-      title: places[i].name,
-      map: map
-    });
+    // places[i].holdMarker = new google.maps.Marker({
+    //   position: new google.maps.LatLng(places[i].lat, places[i].long),
+    //   title: places[i].name,
+    //   map: map
+    // });
 
     var infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+
+    service.getDetails({
+      placeId: places[i].place_id
+    }, function(place, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+            place.formatted_address + '</div>');
+          infowindow.open(map, this);
+        });
+      }
+    });
 
     //if marker is clicked, display its info window
-    google.maps.event.addListener(places[i].holdMarker, 'click', (function(place, i) {
-      return function () {
-        animateMarker(place, i);
-        infowindow.setContent(places[i].name);
-        infowindow.open(map,this);
-      };
-    })(places[i].holdMarker, i));
+    // google.maps.event.addListener(places[i].holdMarker, 'click', (function(place, i) {
+    //   return function () {
+    //     animateMarker(place, i);
+    //     infowindow.setContent(places[i].name);
+    //     infowindow.open(map,this);
+    //   };
+    // })(places[i].holdMarker, i));
 
-    //if nav tool is clicked, display info window above marker
-    var searchNav = $('#spot' + i);
-    searchNav.click((function(place, i) {
-      return function() {
-        animateMarker(place, i);
-        infowindow.setContent(places[i].name);
-        infowindow.open(map,place);
-      };
-    })(places[i].holdMarker, i));
+    // //if nav tool is clicked, display info window above marker
+    // var searchNav = $('#spot' + i);
+    // searchNav.click((function(place, i) {
+    //   return function() {
+    //     animateMarker(place, i);
+    //     infowindow.setContent(places[i].name);
+    //     infowindow.open(map,place);
+    //   };
+    // })(places[i].holdMarker, i));
 
   };
 }
@@ -100,9 +117,9 @@ $("#input").keyup(function() {
 
 //toggle the visibility of side bar when clicking hamburger icon
 $("#hamburger").click(function () {
-    if ( $('#sidebar').css('z-index') == 0) {
-        $('#sidebar').css('z-index', 10);
-    } else {
-        $('#sidebar').css('z-index', 0);
-    };
+  if ( $('#sidebar').css('z-index') == 0) {
+    $('#sidebar').css('z-index', 10);
+  } else {
+    $('#sidebar').css('z-index', 0);
+  };
 });
