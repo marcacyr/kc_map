@@ -81,10 +81,10 @@ function animateMarker(place, i) {
 function updateMarkers() {
   for (var i=0; i < places.length; i++) {
     if (places[i].live === true) {
-      places[i].holdMarker.setMap(map);
+      // places[i].holdMarker.setMap(map);
     }
     else {
-      places[i].holdMarker.setMap(null);
+      // places[i].holdMarker.setMap(null);
     }
   }
 }
